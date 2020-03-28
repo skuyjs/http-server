@@ -1,10 +1,8 @@
 const Server = require('..');
 const server = new Server();
 
-server.get('/', (req, res) => {
-  res.json({
-    'message': 'hello',
-  });
+server.post('/', (req, res) => {
+  res.json(req.body);
 });
 
 server.listen(8080);
