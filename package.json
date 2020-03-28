@@ -1,0 +1,15 @@
+{
+  "name": "@hamjs/http-server",
+  "description": "Mini http server framework for NodeJS",
+  "version": "0.0.1",
+  "scripts": {},
+  "keywords": [
+    "http",
+    "server",
+    "http-server",
+    "hamjs"
+  ],
+  "author": "Hadi Hidayat Hammurabi <hadihammurabi@gmail.com>",
+  "license": "MIT",
+  "dependencies": {}
+}
