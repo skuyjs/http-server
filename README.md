@@ -9,7 +9,7 @@ npm install https://github.com/hadihammurabi/hamjs-http-server
 
 ## Usage
 To use this framework, you can follow this example.
-```
+```javascript
 const Server = require('@hamjs/http-server');
 const server = new Server();
 
