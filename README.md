@@ -4,7 +4,7 @@ Mini http server framework for NodeJS
 ## Installation
 To install `@hamjs/http-server`, run this command using terminal inside your project.
 ```bash
-npm install https://github.com/hadihammurabi/hamjs-http-server
+npm install @hamjs/http-server
 ```
 
 ## Usage
