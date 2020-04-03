@@ -1,7 +1,7 @@
 {
   "name": "@hamjs/http-server",
   "description": "Mini http server framework for NodeJS",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "scripts": {},
   "keywords": [
     "http",
