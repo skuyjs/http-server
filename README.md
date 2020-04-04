@@ -1,16 +1,16 @@
-# @hamjs/http-server
+# @skuyjs/http-server
 Mini http server framework for NodeJS
 
 ## Installation
-To install `@hamjs/http-server`, run this command using terminal inside your project.
+To install `@skuyjs/http-server`, run this command using terminal inside your project.
 ```bash
-npm install @hamjs/http-server
+npm install @skuyjs/http-server
 ```
 
 ## Usage
 To use this framework, you can follow this example.
 ```javascript
-const Server = require('@hamjs/http-server');
+const Server = require('@skuyjs/http-server');
 const server = new Server();
 
 server.get('/', (req, res) => {
