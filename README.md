@@ -1,5 +1,5 @@
 # @skuyjs/http-server
-Mini http server framework for NodeJS
+Http server framework for NodeJS
 
 ## Installation
 To install `@skuyjs/http-server`, run this command using terminal inside your project.
