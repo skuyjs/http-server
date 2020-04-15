@@ -2,7 +2,9 @@
   "name": "@skuyjs/http-server",
   "description": "Mini http server framework for NodeJS",
   "version": "0.0.5",
-  "scripts": {},
+  "scripts": {
+    "docs": "nodemon --watch lib --exec 'jsdoc -d docs -r lib && http-server -c-1 -g -p 8000 docs/'"
+  },
   "keywords": [
     "http",
     "server",
@@ -11,5 +13,10 @@
   ],
   "author": "Hadi Hidayat Hammurabi <hadihammurabi@gmail.com>",
   "license": "MIT",
-  "dependencies": {}
+  "dependencies": {},
+  "devDependencies": {
+    "http-server": "^0.12.1",
+    "jsdoc": "^3.6.4",
+    "nodemon": "^2.0.3"
+  }
 }
