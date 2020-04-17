@@ -1,7 +1,7 @@
 {
   "name": "@skuyjs/http-server",
   "description": "Mini http server framework for NodeJS",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "scripts": {
     "docs": "nodemon --watch lib --exec 'jsdoc -d docs -r lib && http-server -c-1 -g -p 8000 docs/'"
   },
