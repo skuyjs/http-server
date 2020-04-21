@@ -1,21 +1,21 @@
-const Server = require('..');
-const server = new Server();
+const Server = require('../dist')
+const server = new Server()
 
 server.get('/', (req, res) => {
-  res.send('hello');
-});
+  res.send('hello')
+})
 
 // sub-routing for /users/*
-const usersRoute = new Server.Router();
+const usersRoute = new Server.Router()
 
 usersRoute.get('/', (req, res) => {
-  res.send('users');
-});
+  res.send('users')
+})
 
 usersRoute.get('/:id', (req, res) => {
-  res.json(req.params);
-});
+  res.json(req.params)
+})
 
-server.use('/users', usersRoute);
+server.use('/users', usersRoute)
 
-server.listen(8080);
+server.listen(8080)
