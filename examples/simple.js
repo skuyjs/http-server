@@ -1,8 +1,8 @@
-const Server = require('../dist')
-const server = new Server()
+const Server = require('../dist');
+const server = new Server();
 
 server.get('/', (req, res) => {
-  res.send('hello')
-})
+  res.send('hello');
+});
 
-server.listen(8080)
+server.listen(8080);
