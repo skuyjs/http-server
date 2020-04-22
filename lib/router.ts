@@ -1,14 +1,14 @@
 import url from 'url';
 import { Req } from './typings/req';
 import { Res } from './typings/res';
-import { Middleware, RouterParam, Routes, HttpMethod } from './typings/route';
+import { Handler, RouterParam, Routes, HttpMethod } from './typings/route';
 
 /**
  * Router class
  */
 class Router {
   routes: Routes;
-  middlewares: Middleware[];
+  handlers: Handler[];
   private methods: HttpMethod[];
   /**
    * Constructor of Router class
@@ -23,7 +23,7 @@ class Router {
       PUT: {},
       DELETE: {}
     };
-    this.middlewares = [];
+    this.handlers = [];
     this.methods = ['DELETE', 'GET', 'HEAD', 'OPTIONS', 'PATCH', 'POST', 'PUT'];
   }
 
@@ -33,7 +33,7 @@ class Router {
    */
   use(...params: RouterParam[]) {
     if (params.length === 1) {
-      this.middlewares.push(params[0] as Middleware);
+      this.handlers.push(params[0] as Handler);
     } else {
       const subroute = params[1];
       if (subroute instanceof Router) {
@@ -52,33 +52,33 @@ class Router {
     }
   }
 
-  get(route: string, ...handlers: Middleware[]) {
+  get(route: string, ...handlers: Handler[]) {
     this.registerRoute('GET', route, ...handlers);
   }
 
-  post(route: string, ...handlers: Middleware[]) {
+  post(route: string, ...handlers: Handler[]) {
     this.registerRoute('POST', route, ...handlers);
   }
 
-  put(route: string, ...handlers: Middleware[]) {
+  put(route: string, ...handlers: Handler[]) {
     this.registerRoute('PUT', route, ...handlers);
   }
 
-  patch(route: string, ...handlers: Middleware[]) {
+  patch(route: string, ...handlers: Handler[]) {
     this.registerRoute('PATCH', route, ...handlers);
   }
 
-  delete(route: string, ...handlers: Middleware[]) {
+  delete(route: string, ...handlers: Handler[]) {
     this.registerRoute('DELETE', route, ...handlers);
   }
 
-  head(route: string, ...handlers: Middleware[]) {
+  head(route: string, ...handlers: Handler[]) {
     this.registerRoute('HEAD', route, ...handlers);
   }
-  options(route: string, ...handlers: Middleware[]) {
+  options(route: string, ...handlers: Handler[]) {
     this.registerRoute('OPTIONS', route, ...handlers);
   }
-  private registerRoute(method: HttpMethod, route: string, ...handlers: Middleware[]) {
+  private registerRoute(method: HttpMethod, route: string, ...handlers: Handler[]) {
     if (!this.routes[method]) this.routes[method] = {};
     const { params, regex } = this.createRouteRegex(route);
     this.routes[method][regex] = { params, handlers };
@@ -114,7 +114,7 @@ class Router {
       return test;
     });
 
-    let tmpHandlers: Middleware[] | undefined;
+    let tmpHandlers: Handler[] | undefined;
     if (paths.length > 0) {
       const { params, handlers } = this.routes[req.method!][paths[0]];
       const [, ...paramsValues] = new RegExp(paths[0], 'ig').exec(pathname!)!;
@@ -126,14 +126,14 @@ class Router {
   }
 
   /**
-   * Run all default handlers (middlewares)
+   * Run all default handlers (handlers)
    * @param req request instance
    * @param res response instance
    */
-  async runMiddlewares(req: Req, res: Res) {
-    for (const middleware of this.middlewares) {
+  async runHandlers(req: Req, res: Res) {
+    for (const handler of this.handlers) {
       try {
-        await middleware(req, res);
+        await handler(req, res);
       } catch (e) {
         if (process.env.NODE_ENV === 'development') {
           console.log(e.message);
@@ -167,7 +167,7 @@ class Router {
    * @param res response instance
    */
   async handle(req: Req, res: Res) {
-    await this.runMiddlewares(req, res);
+    await this.runHandlers(req, res);
 
     if (req.method!.toLowerCase() === 'options') {
       res.status(200).end();
