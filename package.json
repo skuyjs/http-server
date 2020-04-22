@@ -5,7 +5,8 @@
   "main": "dist/index.js",
   "scripts": {
     "docs": "nodemon --watch lib --exec 'jsdoc -d docs -r lib && http-server -c-1 -g -p 8000 docs/'",
-    "build": "tsc"
+    "build": "tsc",
+    "dev": "tsc-watch"
   },
   "keywords": [
     "http",
@@ -22,6 +23,7 @@
     "jsdoc": "^3.6.4",
     "nodemon": "^2.0.3",
     "prettier": "^2.0.4",
+    "tsc-watch": "^4.2.3",
     "tslint": "^6.1.1",
     "tslint-config-prettier": "^1.18.0",
     "tslint-config-standard": "^9.0.0",
