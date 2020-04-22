@@ -1,13 +1,13 @@
-import { Req } from '../../typings/req'
+import { Req } from '../../typings/req';
 /**
  * Parse JSON
  * @param req
  */
 const json = (req: Req) => {
   try {
-    return JSON.parse(req.body as string)
+    return JSON.parse(req.body as string);
   } catch (e) {
-    return {}
+    return {};
   }
-}
-export default json
+};
+export default json;

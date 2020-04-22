@@ -1,1 +1,1 @@
-export * from './type/json'
+export * from './type/json';
