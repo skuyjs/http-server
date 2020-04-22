@@ -18,9 +18,9 @@ class Server extends Router {
   constructor() {
     super();
     this.server = http.createServer((req: Req, res: Res) => {
-      const reqbody: any[] = [];
+      const reqbody: Buffer[] = [];
       req
-        .on('data', (c) => {
+        .on('data', (c: Buffer) => {
           reqbody.push(c);
         })
         .on('end', async () => {
