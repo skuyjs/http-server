@@ -29,6 +29,14 @@ class Router {
 
   /**
    * Register function to default handler
+   *  [key: string]: {
+   *      params: string[] | null;
+   *      handlers: Handler[];
+   *    };
+   *  }
+   *  export type Routes = {
+   *    [key in HttpMethod]: Route;
+   *  };
    * @param params it can be a function or route path and router instance
    */
   use(...params: RouterParam[]) {
