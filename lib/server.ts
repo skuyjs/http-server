@@ -25,6 +25,11 @@ class Server extends Router {
         })
         .on('end', async () => {
           req.body = Buffer.concat(reqbody).toString();
+
+          if (req.headers['content-type'] === 'application/json') {
+            req.body = JSON.parse(req.body);
+          }
+
           injectRequest(req);
           injectResponse(res);
           await this.handle(req, res);
