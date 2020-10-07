@@ -5,4 +5,5 @@ export interface Req extends IncomingMessage {
   params: object;
   query: object;
   setParams(params?: any[], values?: any[]): void;
+  getHeader(name: string): string | string[] | undefined;
 }

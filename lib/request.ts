@@ -42,4 +42,15 @@ export = function injectRequest(req: Req) {
         });
     }
   };
+
+    /**
+   * Get a request header by name
+   * @param name name of header in lowercase
+   */
+  req.getHeader = (name) => {
+    const value = req.headers[name];
+    console.log(req.headers);
+    return value;
+  };
+
 };
