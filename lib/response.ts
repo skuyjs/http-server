@@ -46,4 +46,20 @@ export = function injectResponse(res: Res) {
     const json = typeof param === 'object' ? JSON.stringify(param) : param;
     sendByType('application/json', json);
   };
+
+  /**
+   * Send redirect response
+   * @param url redirect path
+   * @param code redirect status code, default to 302
+   */
+  res.redirect = (url: string, code: number = 302) => {
+    // tslint:disable-next-line: strict-type-predicates
+    if (![301, 302].includes(code) && process.env.NODE_ENV === 'development') {
+      console.log('Cannot set status code with given code');
+    }
+
+    res.statusCode = code;
+    res.setHeader('Location', url);
+    res.end();
+  }
 };
